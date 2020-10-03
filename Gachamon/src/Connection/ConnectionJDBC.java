@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 public class ConnectionJDBC {
     public static void main(String[] args) {
-        String urlconnection = "jdbc:mysql://localhost:3306/gachamon";
+        String urlconnection = "jdbc:mysql://34.95.173.74:3306/gachamon";
 
-        try (Connection connection = DriverManager.getConnection(urlconnection,"eeikee","Subeteainotame59")){
+        try (Connection connection = DriverManager.getConnection(urlconnection,"root","gachamon2020")){
             System.out.println("Conectado com sucesso");
         } catch (SQLException throwables) {
             System.out.println("Falha na conexao");
