@@ -28,7 +28,6 @@ public class Loading extends javax.swing.JFrame {
         }
               Login login = new Login();
               login.setVisible(true);
-              
               dispose(); 
               }
          }.start();    
