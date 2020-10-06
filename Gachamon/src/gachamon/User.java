@@ -50,11 +50,10 @@ public class User {
         this.prizes = prizes;
     }
 
-    public User(String nome, String email, String password, double balance, List<Prize> prizes) {
+    public User(String nome, String email, String password, double balance) {
         this.nome = nome;
         this.email = email;
         this.password = password;
         this.balance = balance;
-        this.prizes = prizes;
     }
 }
