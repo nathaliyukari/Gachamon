@@ -5,6 +5,14 @@
  */
 package View;
 
+import gachamon.ConnectionJDBC;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author angelina
@@ -38,6 +46,7 @@ public class Login extends javax.swing.JFrame {
         Lfundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Login");
         setPreferredSize(new java.awt.Dimension(480, 480));
 
         btnLogin.setBackground(new java.awt.Color(153, 255, 153));
@@ -130,22 +139,22 @@ public class Login extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(93, 93, 93)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addContainerGap(122, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 9, Short.MAX_VALUE)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(101, 101, 101)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addContainerGap(145, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 12, Short.MAX_VALUE)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
@@ -164,7 +173,19 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastroActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
+        Connection con = ConnectionJDBC.getConnection();
+        PreparedStatement prst = null;
+        try {
+            prst = con.prepareStatement("select * from cliente where ");
+        } catch (SQLException ex) {
+            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ResultSet rs = null;
+        try {
+            rs = prst.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**

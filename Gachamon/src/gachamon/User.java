@@ -7,7 +7,7 @@ public class User {
     protected String nome;
     protected String email;
     protected String password;
-    protected double balance;
+    protected int balance;
     protected List<Prize> prizes = new ArrayList<>();
 
     public String getNome() {
@@ -34,11 +34,11 @@ public class User {
         this.password = password;
     }
 
-    public double getBalance() {
+    public int getBalance() {
         return balance;
     }
 
-    public void setBalance(double balance) {
+    public void setBalance(int balance) {
         this.balance = balance;
     }
 
@@ -50,10 +50,16 @@ public class User {
         this.prizes = prizes;
     }
 
-    public User(String nome, String email, String password, double balance) {
+    public User(String nome, String email, String password, int balance) {
         this.nome = nome;
         this.email = email;
         this.password = password;
         this.balance = balance;
     }
+
+    @Override
+    public String toString() {
+        return "User{" + "nome=" + nome + ", email=" + email + ", password=" + password + ", balance=" + balance + ", prizes=" + prizes + '}';
+    }
+    
 }

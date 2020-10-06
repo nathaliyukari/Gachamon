@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -53,6 +54,7 @@ public class Cadastro extends javax.swing.JFrame {
         Lfundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/background2.png"))); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cadastro");
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -77,7 +79,6 @@ public class Cadastro extends javax.swing.JFrame {
         jLabel6.setText("Saldo:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 160, -1, -1));
 
-        txtSaldo.setText("R$");
         txtSaldo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSaldoActionPerformed(evt);
@@ -119,22 +120,24 @@ public class Cadastro extends javax.swing.JFrame {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         List<User> users= new ArrayList<>();
+        String addUser = "insert into cliente(nome, email, senha, saldo) values(?,?,?,?)";
+        
+        User user = new User(txtNome.getText(),txtEmail.getText(),txtSenha.getText(),Integer.parseInt(txtSaldo.getText()));
+        users.add(user);
         Connection con = ConnectionJDBC.getConnection();
-        PreparedStatement prst = null;
         try {
-            prst = con.prepareStatement("select * from cliente");
+            PreparedStatement prst = con.prepareStatement(addUser);
+            prst.setString(1, user.getNome());
+            prst.setString(2, user.getEmail());
+            prst.setString(3, user.getPassword());
+            prst.setDouble(4, user.getBalance());
+            
+            prst.executeUpdate();
+            JOptionPane.showMessageDialog(rootPane, "Usuário adicionado com sucesso!");
         } catch (SQLException ex) {
             Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(rootPane, "Ocorreu um erro durante a tentativa de registrar o usuário");
         }
-        ResultSet rs = null;
-        try {
-            rs = prst.executeQuery();
-        } catch (SQLException ex) {
-            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
-        }
-                User user = new User(txtNome.getText(),txtEmail.getText(),txtSenha.getText(),Double.parseDouble(txtSaldo.getText()));
-                users.add(user);
-                System.out.println(users);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     /**

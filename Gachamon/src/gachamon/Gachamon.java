@@ -22,16 +22,6 @@ public class Gachamon {
 
 
     public static void main(String[] args) throws SQLException {
-        List<User> users= new ArrayList<>();
-        Connection con = ConnectionJDBC.getConnection();
-        PreparedStatement prst = con.prepareStatement("select * from cliente");
-        ResultSet rs = prst.executeQuery();
-        while( rs.next()){
-        User user = new User(rs.getString("nome"),rs.getString("email"),rs.getString("senha"),0.0);
-        users.add(user);
-        }
-       for(int i= 0; i < users.size(); i++){
-            System.out.println(users.get(i));
-       }
+       
     }
 }

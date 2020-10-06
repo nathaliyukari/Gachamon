@@ -12,6 +12,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="Cadastro"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -113,9 +114,6 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="txtSaldo">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="R$"/>
-          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSaldoActionPerformed"/>
           </Events>
