@@ -7,7 +7,7 @@ public class User {
     protected String nome;
     protected String email;
     protected String password;
-    protected int balance;
+    protected Integer balance;
     protected List<Prize> prizes = new ArrayList<>();
 
     public String getNome() {
@@ -34,11 +34,11 @@ public class User {
         this.password = password;
     }
 
-    public int getBalance() {
+    public Integer getBalance() {
         return balance;
     }
 
-    public void setBalance(int balance) {
+    public void setBalance(Integer balance) {
         this.balance = balance;
     }
 
@@ -50,7 +50,7 @@ public class User {
         this.prizes = prizes;
     }
 
-    public User(String nome, String email, String password, int balance) {
+    public User(String nome, String email, String password, Integer balance) {
         this.nome = nome;
         this.email = email;
         this.password = password;

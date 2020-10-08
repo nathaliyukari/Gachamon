@@ -22,7 +22,8 @@ import javax.swing.JOptionPane;
  * @author angelina
  */
 public class Cadastro extends javax.swing.JFrame {
-
+    List<User> users= new ArrayList<>();
+    String addUser = "insert into cliente(nome, email, senha, saldo) values(?,?,?,?)";
     /**
      * Creates new form Cadastro
      */
@@ -119,10 +120,10 @@ public class Cadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNomeActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        List<User> users= new ArrayList<>();
-        String addUser = "insert into cliente(nome, email, senha, saldo) values(?,?,?,?)";
-        
-        User user = new User(txtNome.getText(),txtEmail.getText(),txtSenha.getText(),Integer.parseInt(txtSaldo.getText()));
+
+        if(!(txtNome.getText().equals("") || txtEmail.getText().equals("") || txtSenha.getText().equals("") || txtSaldo.getText().equals("")|| Integer.parseInt(txtSaldo.getText())<= 0)){
+                User user = new User(txtNome.getText(),txtEmail.getText(),txtSenha.getText(),Integer.parseInt(txtSaldo.getText()));
+                System.out.println(user.getBalance());  
         users.add(user);
         Connection con = ConnectionJDBC.getConnection();
         try {
@@ -130,12 +131,23 @@ public class Cadastro extends javax.swing.JFrame {
             prst.setString(1, user.getNome());
             prst.setString(2, user.getEmail());
             prst.setString(3, user.getPassword());
-            prst.setDouble(4, user.getBalance());
-            
+            prst.setInt(4, user.getBalance());
+           
             prst.executeUpdate();
+           
             JOptionPane.showMessageDialog(rootPane, "Usuário adicionado com sucesso!");
+             new Thread(){
+               public void run(){
+              Login login = new Login();
+              login.setVisible(true);
+              dispose();  
+              }
+         }.start();    
         } catch (SQLException ex) {
             Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+        else{
             JOptionPane.showMessageDialog(rootPane, "Ocorreu um erro durante a tentativa de registrar o usuário");
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed

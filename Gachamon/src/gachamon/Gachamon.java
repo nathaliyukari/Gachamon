@@ -5,6 +5,7 @@
  */
 package gachamon;
 
+import View.Loading;
 import com.mysql.cj.protocol.Resultset;
 
 import java.sql.Connection;
@@ -22,6 +23,7 @@ public class Gachamon {
 
 
     public static void main(String[] args) throws SQLException {
-       
+       Loading loading = new Loading();
+       loading.setVisible(true);
     }
 }
